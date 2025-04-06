@@ -9,6 +9,7 @@ SRC += src/librerias/timers.c
 SRC += src/librerias/gpio.c
 SRC += src/librerias/systickdelay.c
 SRC += src/librerias/interupcciones.c
+SRC += src/librerias/garra.c
 
 
 # Incluye las rutas de tus headers

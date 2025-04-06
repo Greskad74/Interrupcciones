@@ -9,13 +9,13 @@ void init_gpio(void){
 	//pa1
 	GPIOA -> CRL &=  ~(1<<4)|(1<<5);
 	GPIOA -> CRL |= (1<<7);
-	GPIA -> CRL |= (0 <<6);
+	GPIOA -> CRL |= (0 <<6);
 	
 
 	//PA2
 	
 	
-	GPIOA -> CRL &= ~(1<<9)(1<<8);
+	GPIOA -> CRL &= ~(1<<9)|(1<<8);
 	GPIOA -> CRL |=  (1<<11);
 	GPIOA -> CRL &= ~ (1<<10);
 	

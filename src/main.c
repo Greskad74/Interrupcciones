@@ -4,8 +4,7 @@
 
 int main(void) {
   init_gpio();
-  ext_interrupt_1();
-  ext_interrupt_2();
+  ext_interrupt();
   while (1)
   {
   }

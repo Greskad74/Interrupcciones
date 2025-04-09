@@ -18,38 +18,38 @@ EXTI program:
 	On each falling edge, an interrupt is generated.
 	Interrupt service routine toggles Led on PC13.
 */
-void EXTI_IRQHandler_1()
+void EXTI1_IRQHandler()
 {
-	EXTI->PR |= (1 << 1); //verifica la interrupccion
+	EXTI->PR |= (1 << 4); //verifica la interrupccion
 	motor1_secuencia();
-	for (volatile int i = 0; i < 100; i++);
+	
 	motor1_secuencia2();
+	stoptim2();
 	
+}
+
+void ext_interrupt(void){
+	AFIO->EXTICR[0] = (1 << 0); //Selects PA1 for line 1
+	EXTI->FTSR |= (1 << 1);	//interrupt on falling edge
+	EXTI->IMR |= (1 << 1);	//enable interrupt
+	NVIC->ISER[0] |= 1 << 7;
 	
-	GPIOC->ODR ^= (1 << 13); 
+	AFIO->EXTICR[0] |= (1 << 8);   
+  EXTI->FTSR |= (1 << 2);        
+  EXTI->IMR |= (1 << 2);     
+  NVIC->ISER[0] |= 1 << 8;
+
 }
 
-void ext_interrupt_1(void){
-	EXTI->FTSR |= (1 << 1);	 // decedente 
-	EXTI->IMR |= (1 << 1);	// PA1
-	NVIC->ISER[0] |= 1 << 8; // canal 1
-}
 
 
 
-void ext_interrupt_2(void){			//PA2
-	EXTI->FTSR |= (1 << 2);	
-	EXTI->IMR |= (1 << 2);	
-	NVIC->ISER[0] |= 1 << 9;
-}
 
-void EXTI_IRQHandler_2()
+void EXTI2_IRQHandler()
 {
 	EXTI->PR |= (1 << 2); //verifica la interrupccion 
 	motor2_secuencia1();
-	for (volatile int i = 0; i < 100; i++);
 	motor2_secuencia2();
+	stoptim3();	
 	
-	
-	GPIOC->ODR ^= (1 << 13); 
 }
